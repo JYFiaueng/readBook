@@ -1,0 +1,27 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		title #{title}
+		include ../includes/head
+	body
+		h1.text-center #{title}
+		.container
+			.row
+				.col-md-4.col-md-offset-4
+					form(onsubmit="return false;")
+						.modal-body
+							.form-group
+								label(for="signinName") #{inxt.t('Account')}
+								input#signinName.form-control(name="user[name]", type="text", required)
+							.form-group
+								label(for="signinPassword") #{inxt.t('Password')}
+								input#signinPassword.form-control(name="user[password]", type="password", required)
+						.modal-footer
+							button.btn.btn-block.btn-success(id="login") #{inxt.t('Signin')}
+					hr
+					button.btn.btn-block.btn-default
+						a(href="/signup") #{inxt.t('Go')}&nbsp;#{inxt.t('Signup')}
+					button.btn.btn-block.btn-default
+						a(href="/") #{inxt.t('Home')}
+		script(src="/js/login.js")

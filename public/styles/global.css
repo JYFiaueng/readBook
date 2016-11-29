@@ -1,0 +1,41 @@
+*{ font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
+
+#extraDiv1 {
+	width: 50px;
+	height: 50px;
+	position: fixed;
+	background-color: #F8F8F8;
+	bottom: 60px;
+	right: 0px;
+	cursor: pointer;
+	border-radius: 25px;
+	z-index: 1030;
+}
+#extraDiv1:after {
+	content: "";
+	width: 2px;
+	height: 5px;
+	position: absolute;
+	left: 4px;
+	top: 30px;
+	box-shadow: 2px -2px, 4px -4px, 6px -6px, 8px -8px, 10px -10px, 12px -12px, 14px -14px, 16px -16px, 18px -18px, 20px -20px, 22px -18px, 24px -16px, 26px -14px, 28px -12px, 30px -10px, 32px -8px, 34px -6px, 36px -4px, 38px -2px, 12px -10px, 14px -9px, 16px -8px, 18px -7px, 20px -6px, 22px -7px, 24px -8px, 26px -9px, 28px -10px;
+}
+#extraDiv1:hover {
+	-webkit-animation: back 0.5s infinite;
+	-moz-animation: back 0.5s infinite;
+	-ms-animation: back 0.5s infinite;
+	-o-animation: back 0.5s infinite;
+	animation: back 0.5s infinite;
+}
+@keyframes back {
+	0% {
+		bottom: 60px;
+	}
+	50% {
+		bottom: 70px;
+		box-shadow: 0 0 10px #aaa;
+	}
+	100% {
+		bottom: 60px;
+	}
+}

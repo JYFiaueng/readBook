@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+	.container
+		form(method="GET", action="/admin/book/list")
+			.input-group.col-sm-12.pull-right
+				input.form-control(type="text", name="queryStr", placeholder="#{inxt.t('title')}、#{inxt.t('author')}、#{inxt.t('year')}、#{inxt.t('time')}、#{inxt.t('publisher')}、PV")
+				span.input-group-btn
+					button.btn.btn-default(type="submit") #{inxt.t('find')}
+		.row
+			table.table.table-hover.table-boedered
+				thead
+					tr
+						th #{inxt.t('title')}(总量#{books.length})
+						th #{inxt.t('author')}
+						th #{inxt.t('year')}
+						th #{inxt.t('time')}
+						th #{inxt.t('publisher')}
+						th PV
+						th #{inxt.t('look')}
+						th #{inxt.t('update')}
+						th #{inxt.t('del')}
+				tbody
+					each item in books
+						//- 按照管理员输入的字段进行过滤
+						if item.title.indexOf(queryStr) !== -1 || item.author.indexOf(queryStr) !== -1 || item.year.indexOf(queryStr) !== -1 || moment(item.meta.updateAt).format('MM/DD/YYYY').indexOf(queryStr) !== -1 || item.publisher.indexOf(queryStr) !== -1 || item.pv.toString().indexOf(queryStr) !== -1
+							tr(class="item-id-#{item._id}")
+								td #{item.title}
+								td #{item.author}
+								td #{item.year}
+								td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}
+								td #{item.publisher}
+								td #{item.pv}
+								td: a(target="_blank", href="../../book/#{item._id}") #{inxt.t('look')}
+								td: a(target="_blank", href="../../admin/book/update/#{item._id}") #{inxt.t('update')}
+								td
+									button.btn.btn-danger.del(type="button", data-id="#{item._id}") #{inxt.t('del')}
+	p &nbsp;
+	p &nbsp;
+	script(src="/js/admin.js")

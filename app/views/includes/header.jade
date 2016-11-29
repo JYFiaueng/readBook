@@ -1,0 +1,100 @@
+//- 这里定义网页共有的header部分
+.container
+	.row
+		.page-header.clearfix
+			h1.text-center #{title}
+			.col-md-8
+				if user && (user.role >= admin)
+						button.btn.btn-default: a(href="/") #{inxt.t('Home')}
+						button.btn.btn-default: a(href="/admin/book/list", target="_blank") #{inxt.t('BooksM')}
+						button.btn.btn-default: a(href="/admin/user/list", target="_blank") #{inxt.t('UsersM')}
+						button.btn.btn-default: a(href="/admin/category/list", target="_blank") #{inxt.t('BooksC')}
+						button.btn.btn-default: a(href="/admin/book/new", target="_blank") #{inxt.t('AddBook')}
+						button.btn.btn-default: a(href="/admin/category/new", target="_blank") #{inxt.t('AddCategory')}
+				else
+						button.btn.btn-default: a(href="/") #{inxt.t('Home')}
+			.col-md-4
+				form(method="GET", action="/results")
+					.input-group.col-sm-12.pull-right
+						input.form-control(type="text", name="q", placeholder="#{inxt.t('author')} #{inxt.t('tags')} #{inxt.t('title')} #{inxt.t('publisher')}")
+						span.input-group-btn
+							button.btn.btn-default(type="submit") #{inxt.t('Search')}
+.navbar.navbar-default.navbar-fixed-bottom
+	.container
+		if user
+			p.navbar-text.navbar-right
+				a(href="/user/changeImage", title="#{inxt.t('MInfo')}")
+					//- 判断地址是否为网络地址
+					if user.image && user.image.indexOf('http') > -1
+						img(src="#{user.image}", style="width:30px;height:30px;border-radius:50%;")
+					else
+						//- 拼接服务器地址
+						img(src="/headImage/#{user.image}", style="width:30px;height:30px;border-radius:50%;")
+				span &nbsp;&nbsp;#{inxt.t('Welcome')},#{user.name}
+				span &nbsp;|&nbsp;
+				a(href="/user/book/list", title="#{inxt.t('Click')}", target="_blank") #{inxt.t('MyBookList')}
+				span &nbsp;|&nbsp;
+				a.navbar-link(href="/logout") #{inxt.t('Logout')}
+				span &nbsp;|&nbsp;
+				a.navbar-link(href="/signup", target="_blank") #{inxt.t('Signup')}
+				span &nbsp;|&nbsp;
+				a.navbar-link(href="/language?lng=zh") #{inxt.t('Chinese')}
+				span &nbsp;|&nbsp;
+				a.navbar-link(href="/language?lng=en") #{inxt.t('English')}
+				//- 隐藏的指示用户是否登录的表单，用于在客户端检测用户的登陆状态
+				input(type="hidden", id="userLogin", value="1")
+		else
+			p.navbar-text.navbar-right
+				a.navbar-link(href="#", data-toggle="modal", data-target="#signupModal") #{inxt.t('Signup')}
+				span &nbsp;|&nbsp;
+				a.navbar-link(href="#", data-toggle="modal", data-target="#signinModal") #{inxt.t('Signin')}
+				span &nbsp;|&nbsp;
+				a.navbar-link(href="/language?lng=zh") #{inxt.t('Chinese')}
+				span &nbsp;|&nbsp;
+				a.navbar-link(href="/language?lng=en") #{inxt.t('English')}
+				//- 隐藏的指示用户是否登录的表单，用于在客户端检测用户的登陆状态
+				input(type="hidden", id="userLogin", value="0")
+#signupModal.modal.fade
+	.modal-dialog
+		.modal-content
+			form(onsubmit="return false;")
+				.modal-header #{inxt.t('Signup')}
+				.modal-body
+					.form-group
+						label(for="signupName") #{inxt.t('Account')}
+						input#signupName.form-control(name="user[name]", type="text", required, placeholder="2-16 #{inxt.t('char')}")
+					.form-group
+						label(for="signupPassword") #{inxt.t('Password')}
+						input#signupPassword.form-control(name="user[password]", type="password", required, placeholder="6-16 #{inxt.t('charset')} #{inxt.t('number')}")
+				.modal-footer
+					button.btn.btn-default(type="button", data-dismiss="modal") #{inxt.t('Close')}
+					button.btn.btn-success(id="register") #{inxt.t('Signup')}
+#signinModal.modal.fade
+	.modal-dialog
+		.modal-content
+			form(onsubmit="return false;")
+				.modal-header #{inxt.t('Signin')}
+				.modal-body
+					.form-group
+						label(for="signinName") #{inxt.t('Account')}
+						input#signinName.form-control(name="user[name]", type="text", required)
+					.form-group
+						label(for="signinPassword") #{inxt.t('Password')}
+						input#signinPassword.form-control(name="user[password]", type="password", required)
+				.modal-footer
+					button.btn.btn-default(type="button", data-dismiss="modal") #{inxt.t('Close')}
+					button.btn.btn-success(id="login") #{inxt.t('Signin')}
+#addListSuccess.modal.fade
+	.modal-dialog
+		.modal-content
+			.modal-header
+				p#addListTitle.text-center
+			.modal-body
+				p.text-center
+					span(id="addListTime")
+					span &nbsp;#{inxt.t('Close')}...
+			.modal-footer
+				button.btn.btn-block.btn-success(type="button", data-dismiss="modal") #{inxt.t('Close')}
+div(id="extraDiv1")
+script(src="/js/login.js")
+script(src="/js/register.js")

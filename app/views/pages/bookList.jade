@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+	.container
+		form(method="GET", action="/user/book/list")
+			.input-group.col-sm-12.pull-right
+				input.form-control(type="text", name="queryStr", placeholder="#{inxt.t('title')}、#{inxt.t('author')}、#{inxt.t('price')}、#{inxt.t('average')}")
+				span.input-group-btn
+					button.btn.btn-default(type="submit") #{inxt.t('find')}
+		.row
+			table.table.table-hover.table-boedered
+				thead
+					tr
+						th #{inxt.t('title')}
+						th #{inxt.t('author')}
+						th #{inxt.t('price')}
+						th #{inxt.t('average')}
+						th #{inxt.t('cover')}
+						th #{inxt.t('look')}
+						th #{inxt.t('del')}
+				tbody
+					each item in userInfo.purchaseList
+						if item.title.indexOf(queryStr) !== -1 || item.author.indexOf(queryStr) !== -1 || item.price.indexOf(queryStr) !== -1 || item.rating.average.toString().indexOf(queryStr) !== -1
+							tr(class="item-id-#{item._id}")
+								td(style="vertical-align:middle;") #{item.title}
+								td(style="vertical-align:middle;") #{item.author}
+								td(style="vertical-align:middle;") #{item.price}
+								td(style="vertical-align:middle;") #{item.rating.average}
+								td(style="vertical-align:middle;")
+									img(src="#{item.images.small}", style="height:81px;")
+								td(style="vertical-align:middle;")
+									a(href="/book/#{item._id}", target="_blank") #{inxt.t('look')}
+								td(style="vertical-align:middle;")
+									button.btn.btn-danger.del(type="button", data-id="#{item._id}") #{inxt.t('del')}
+	p &nbsp;
+	p &nbsp;
+	script(src="/js/bookList.js")

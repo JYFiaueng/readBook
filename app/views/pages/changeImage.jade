@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			form.form-horizontal(method="post", action="/user/changeImage/change" enctype="multipart/form-data")
+				.form-group
+					label.col-sm-2.control-label #{inxt.t('Account')}
+					.col-sm-10
+						span.form-control #{user.name}
+				.form-group
+					label.col-sm-2.control-label(for="inputPassword") #{inxt.t('change')}#{inxt.t('Password')}
+					.col-sm-10
+						input#inputPassword.form-control(type="password", name="password", placeholder="6-16 #{inxt.t('charset')} #{inxt.t('number')}")
+				.form-group
+					label.col-sm-2.control-label(for="inputImage") #{inxt.t('imageUrl')}
+					.col-sm-10
+						if user.image.indexOf('http') !== -1
+							input#inputImage.form-control(type="text", name="userImage", value=user.image, placeholder="URL")
+						else
+							input#inputImage.form-control(type="text", name="userImage", value='', placeholder="URL")
+				.form-group
+					label.col-sm-2.control-label(for="uploadImage") #{inxt.t('upload')}
+					.col-sm-10
+						input#uploadImage(type="file", name="uploadImage")
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-default(type="submit") #{inxt.t('submit')}

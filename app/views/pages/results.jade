@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			.panel.panel-default
+				.panel-heading
+					h3 #{inxt.t('key')}：#{keyword}
+				.panel-body
+					if books && books.length > 0
+						each item in books
+							.col-md-2.text-center
+								.thumbnil
+									a(href="/book/#{item._id}", title="查看详细信息", target="_blank")
+										//- 判断地址是否为网络地址
+										if item.poster.indexOf('http') > -1
+											img(src="#{item.poster}", alt="#{item.title}", width="120px")
+										else
+											//- 拼接服务器地址
+											img(src="/upload/#{item.poster}", alt="#{item.title}", width="120px")
+										h3 #{item.title}
+									//- .caption
+										//- p: a.btn.btn-primary(href="/book/#{item._id}", role="button") 查看详细信息
+					else
+						p #{inxt.t('notFind')}
+			//- 分页的制作
+			ul.pagination
+				- for(var i = 0; i < totalPage; i++){
+						- if(currentPage == (i+1)){
+								li.active
+									span #{currentPage}
+						- }else{
+								li
+									a(href="/results?p=#{i}&#{query}") #{i+1}
+						- }
+					- }
+		p &nbsp;
+		p &nbsp;

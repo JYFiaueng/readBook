@@ -1,0 +1,7 @@
+//- 这里定义需要引入的头文件
+link(href="/libs/bootstrap/dist/css/bootstrap.min.css", rel="stylesheet")
+script(src="/libs/jquery/dist/jquery.min.js")
+script(src="/libs/bootstrap/dist/js/bootstrap.min.js")
+link(href="/styles/global.css", rel="stylesheet")
+//- 注意下面requirejs的夹杂路径都要在根目录下，不然找不到
+script(type="text/javascript", src="/js/require.js", data-main="/js/goTop")
