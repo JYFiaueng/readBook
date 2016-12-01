@@ -15,8 +15,15 @@ html
 								label(for="signupName") #{inxt.t('Account')}
 								input#signupName.form-control(name="user[name]", type="text", required, placeholder="2-16 #{inxt.t('char')}")
 							.form-group
+								label(for="signupEmail") #{inxt.t('email')}
+								input#signupEmail.form-control(name="user[email]", type="email", required, placeholder="#{inxt.t('email')}")
+							.form-group
 								label(for="signupPassword") #{inxt.t('Password')}
 								input#signupPassword.form-control(name="user[password]", type="password", required, placeholder="6-16 #{inxt.t('charset')} #{inxt.t('number')}")
+							.form-group.text-right
+								a(href="/user/findPassPage") #{inxt.t('findPass')}
+								&nbsp;
+								button.btn.btn-default(id="againSend" disabled="true") #{inxt.t('againSend')}
 						.modal-footer
 							button.btn.btn-block.btn-success(id="register") #{inxt.t('Signup')}
 					hr

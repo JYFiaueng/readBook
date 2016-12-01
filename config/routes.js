@@ -52,6 +52,16 @@ module.exports = function (app){
 	app.post('/user/signup', User.signup);
 	// user signin
 	app.post('/user/signin', User.signin);
+	// find Password page
+	app.get('/user/findPassPage', User.findPassPage);
+	// find Password page
+	app.get('/user/findPass', User.findPass);
+	// change pass page
+	app.get('/user/changePassPage', User.changePassPage);
+	// change pass
+	app.get('/user/changePass', User.changePass);
+	// user active
+	app.get('/user/active', User.active);
 	// change image page(在此之上添加了修改用户名和密码)
 	app.get('/user/changeImage', User.signinRequired, User.changeImage);
 	// change user info

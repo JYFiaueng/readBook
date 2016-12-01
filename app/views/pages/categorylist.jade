@@ -16,8 +16,9 @@ block content
 						th #{inxt.t('update')}
 						th #{inxt.t('del')}
 				tbody
+					- queryStr = queryStr.toLowerCase()
 					each item in categories
-						if item.name.indexOf(queryStr) !== -1 || moment(item.meta.updateAt).format('MM/DD/YYYY').indexOf(queryStr) !== -1
+						if ~item.name.toLowerCase().indexOf(queryStr) || ~moment(item.meta.updateAt).format('MM/DD/YYYY').toLowerCase().indexOf(queryStr)
 							tr(class="item-id-#{item._id}")
 								td #{item.name}
 								td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}

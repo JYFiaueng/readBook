@@ -71,7 +71,16 @@ module.exports = {
 			'charset':'character',
 			'list':'List',
 			'book':'Book',
-			'info':'Info'
+			'info':'Info',
+			'addnumber':'ReadingQuantity',
+			'hotbook':'hot book',
+			'email':'Email',
+			'againSend':'again send?',
+			'active':'Active',
+			'suc':'Success',
+			'fail':'Fail',
+			'findPass':'Find Password',
+			'changePass':'Change Password'
 		}
 	},
 	zh:{
@@ -146,7 +155,16 @@ module.exports = {
 			'charset':'字符',
 			'list':'列表',
 			'book':'图书',
-			'info':'信息'
+			'info':'信息',
+			'addnumber':'阅读量',
+			'hotbook':'热门图书',
+			'email':'邮箱',
+			'againSend':'未收到？再次发送',
+			'active':'激活',
+			'suc':'成功',
+			'fail':'失败',
+			'findPass':'找回密码',
+			'changePass':'修改密码'
 		}
 	}
 };

@@ -19,8 +19,9 @@ block content
 						th #{inxt.t('look')}
 						th #{inxt.t('del')}
 				tbody
+					- queryStr = queryStr.toLowerCase()
 					each item in userInfo.purchaseList
-						if item.title.indexOf(queryStr) !== -1 || item.author.indexOf(queryStr) !== -1 || item.price.indexOf(queryStr) !== -1 || item.rating.average.toString().indexOf(queryStr) !== -1
+						if ~item.title.toLowerCase().indexOf(queryStr) || ~item.author.toLowerCase().indexOf(queryStr) || ~item.price.toLowerCase().indexOf(queryStr) || ~item.rating.average.toString().toLowerCase().indexOf(queryStr)
 							tr(class="item-id-#{item._id}")
 								td(style="vertical-align:middle;") #{item.title}
 								td(style="vertical-align:middle;") #{item.author}

@@ -12,11 +12,13 @@ html
 					form(onsubmit="return false;")
 						.modal-body
 							.form-group
-								label(for="signinName") #{inxt.t('Account')}
+								label(for="signinName") #{inxt.t('Account')}/#{inxt.t('email')}
 								input#signinName.form-control(name="user[name]", type="text", required)
 							.form-group
 								label(for="signinPassword") #{inxt.t('Password')}
 								input#signinPassword.form-control(name="user[password]", type="password", required)
+							.form-group.text-right
+								a(href="/user/findPassPage") #{inxt.t('findPass')}
 						.modal-footer
 							button.btn.btn-block.btn-success(id="login") #{inxt.t('Signin')}
 					hr

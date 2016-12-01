@@ -31,6 +31,9 @@ app.locals.moment = require('moment');
 app.locals.admin = 50;
 app.locals.superAdmin = 51;
 
+// 引入邮件发送模块
+app.locals.sendMail = require('./config/email');
+
 
 // 连接数据库
 mongoose.connect(dbUrl);

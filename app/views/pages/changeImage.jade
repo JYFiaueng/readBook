@@ -11,7 +11,7 @@ block content
 				.form-group
 					label.col-sm-2.control-label(for="inputPassword") #{inxt.t('change')}#{inxt.t('Password')}
 					.col-sm-10
-						input#inputPassword.form-control(type="password", name="password", placeholder="6-16 #{inxt.t('charset')} #{inxt.t('number')}")
+						a(href="/user/changePassPage?id=#{user._id}") #{inxt.t('change')}#{inxt.t('Password')}
 				.form-group
 					label.col-sm-2.control-label(for="inputImage") #{inxt.t('imageUrl')}
 					.col-sm-10

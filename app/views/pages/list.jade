@@ -11,8 +11,9 @@ block content
 			table.table.table-hover.table-boedered
 				thead
 					tr
-						th #{inxt.t('title')}(总量#{books.length})
+						th #{inxt.t('title')}
 						th #{inxt.t('author')}
+						th #{inxt.t('addnumber')}
 						th #{inxt.t('year')}
 						th #{inxt.t('time')}
 						th #{inxt.t('publisher')}
@@ -21,12 +22,15 @@ block content
 						th #{inxt.t('update')}
 						th #{inxt.t('del')}
 				tbody
+					- queryStr = queryStr.toLowerCase()
 					each item in books
 						//- 按照管理员输入的字段进行过滤
-						if item.title.indexOf(queryStr) !== -1 || item.author.indexOf(queryStr) !== -1 || item.year.indexOf(queryStr) !== -1 || moment(item.meta.updateAt).format('MM/DD/YYYY').indexOf(queryStr) !== -1 || item.publisher.indexOf(queryStr) !== -1 || item.pv.toString().indexOf(queryStr) !== -1
+						//- if item.title.indexOf(queryStr) !== -1 || item.author.indexOf(queryStr) !== -1 || item.year.indexOf(queryStr) !== -1 || moment(item.meta.updateAt).format('MM/DD/YYYY').indexOf(queryStr) !== -1 || item.publisher.indexOf(queryStr) !== -1 || item.pv.toString().indexOf(queryStr) !== -1
+						if ~item.title.toLowerCase().indexOf(queryStr) || ~item.author.toLowerCase().indexOf(queryStr) || ~item.year.toLowerCase().indexOf(queryStr) || ~moment(item.meta.updateAt).format('MM/DD/YYYY').toLowerCase().indexOf(queryStr) || ~item.publisher.toLowerCase().indexOf(queryStr) || ~item.pv.toString().indexOf(queryStr)
 							tr(class="item-id-#{item._id}")
 								td #{item.title}
 								td #{item.author}
+								td #{item.addnumber}
 								td #{item.year}
 								td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}
 								td #{item.publisher}

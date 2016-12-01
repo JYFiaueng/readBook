@@ -25,7 +25,7 @@
 			p.navbar-text.navbar-right
 				a(href="/user/changeImage", title="#{inxt.t('MInfo')}")
 					//- 判断地址是否为网络地址
-					if user.image && user.image.indexOf('http') > -1
+					if user.image && ~user.image.indexOf('http')
 						img(src="#{user.image}", style="width:30px;height:30px;border-radius:50%;")
 					else
 						//- 拼接服务器地址
@@ -64,10 +64,16 @@
 						label(for="signupName") #{inxt.t('Account')}
 						input#signupName.form-control(name="user[name]", type="text", required, placeholder="2-16 #{inxt.t('char')}")
 					.form-group
+						label(for="signupEmail") #{inxt.t('email')}
+						input#signupEmail.form-control(name="user[email]", type="email", required, placeholder="#{inxt.t('email')}")
+					.form-group
 						label(for="signupPassword") #{inxt.t('Password')}
 						input#signupPassword.form-control(name="user[password]", type="password", required, placeholder="6-16 #{inxt.t('charset')} #{inxt.t('number')}")
+					.form-group.text-right
+						a(href="/user/findPassPage") #{inxt.t('findPass')}
+						button.btn.btn-default(id="againSend", disabled="true") #{inxt.t('againSend')}
 				.modal-footer
-					button.btn.btn-default(type="button", data-dismiss="modal") #{inxt.t('Close')}
+					button.btn.btn-default(type="button", data-dismiss="modal", id="closeSignup") #{inxt.t('Close')}
 					button.btn.btn-success(id="register") #{inxt.t('Signup')}
 #signinModal.modal.fade
 	.modal-dialog
@@ -81,8 +87,10 @@
 					.form-group
 						label(for="signinPassword") #{inxt.t('Password')}
 						input#signinPassword.form-control(name="user[password]", type="password", required)
+					.form-group.text-right
+						a(href="/user/findPassPage") #{inxt.t('findPass')}
 				.modal-footer
-					button.btn.btn-default(type="button", data-dismiss="modal") #{inxt.t('Close')}
+					button.btn.btn-default(type="button", data-dismiss="modal", id="closeSignin") #{inxt.t('Close')}
 					button.btn.btn-success(id="login") #{inxt.t('Signin')}
 #addListSuccess.modal.fade
 	.modal-dialog

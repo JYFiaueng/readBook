@@ -19,10 +19,16 @@ exports.index = function (req, res){
 				console.log(err);
 				return;
 			}
-			res.render('index', {
-				title:App.locals.inxt.t('Home'),
-				categories:categories
-			});
+			Book.find({})
+				.sort({addnumber:-1})
+				.limit(5)
+				.exec(function (err, hotBook){
+					res.render('index', {
+						title:App.locals.inxt.t('Home'),
+						categories:categories,
+						hotBook:hotBook
+					});
+				});
 		});
 };
 

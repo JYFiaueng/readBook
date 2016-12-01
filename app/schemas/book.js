@@ -33,6 +33,10 @@ var BookSchema = new Schema({
 		type:Number,
 		default:0
 	},
+	addnumber:{
+		type:Number,
+		default:0
+	},
 	category:{
 		type:ObjectId,
 		ref:'Category'

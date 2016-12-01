@@ -14,7 +14,12 @@ var UserSchema = new Schema({
 	},
 	image:{
 		type:String,
-		default:'http://img.mukewang.com/57c04d3d0001b57f19201200-200-200.jpg'
+		default:'http://img.mukewang.com/583d20f40001357e08800587-200-200.jpg'
+	},
+	email:String,
+	active:{
+		type:Number,
+		default:0
 	},
 	password:String,
 	// 0:nomal user 

@@ -3,25 +3,46 @@ extends ../layout
 block content
 	.container
 		.row
-			each cat in categories
+			.col-md-9
+				each cat in categories
+					.panel.panel-default
+						.panel-heading
+							h3
+								a(href="/results?cat=#{cat._id}&p=0", title="#{inxt.t('look')}") #{cat.name}
+						.panel-body
+							if cat.books && cat.books.length > 0
+								each item in cat.books
+									.col-md-2.text-center
+										.thumbnil
+											a(href="/book/#{item._id}", title="#{inxt.t('look')}", target="_blank")
+												//- 判断地址是否为网络地址
+												if item.poster.indexOf('http') > -1
+													img(src="#{item.poster}", alt="#{item.title}", width="100px")
+												else
+													//- 拼接服务器地址
+													img(src="/upload/#{item.poster}", alt="#{item.title}", width="100px")
+												h5 #{item.title}
+											//- .caption
+												//- p: a.btn.btn-primary(href="/book/#{item._id}", role="button") 查看详细信息
+			.col-md-3#hotbook
 				.panel.panel-default
-					.panel-heading
-						h3
-							a(href="/results?cat=#{cat._id}&p=0", title="#{inxt.t('look')}") #{cat.name}
-					.panel-body
-						if cat.books && cat.books.length > 0
-							each item in cat.books
-								.col-md-2.text-center
-									.thumbnil
-										a(href="/book/#{item._id}", title="#{inxt.t('look')}", target="_blank")
-											//- 判断地址是否为网络地址
-											if item.poster.indexOf('http') > -1
-												img(src="#{item.poster}", alt="#{item.title}", width="120px")
-											else
-												//- 拼接服务器地址
-												img(src="/upload/#{item.poster}", alt="#{item.title}", width="120px")
-											h3 #{item.title}
-										//- .caption
-											//- p: a.btn.btn-primary(href="/book/#{item._id}", role="button") 查看详细信息
+						.panel-heading
+							h3 #{inxt.t('hotbook')}
+						.panel-body
+							if hotBook && hotBook.length > 0
+								each item in hotBook
+									.col-md-12.text-center
+										.thumbnil
+											.pull-left
+												a(href="/book/#{item._id}", title="#{inxt.t('look')}", target="_blank")
+													//- 判断地址是否为网络地址
+													if item.poster.indexOf('http') > -1
+														img(src="#{item.poster}", alt="#{item.title}", width="66px")
+													else
+														//- 拼接服务器地址
+														img(src="/upload/#{item.poster}", alt="#{item.title}", width="66px")
+											h5 #{inxt.t('name')} : #{item.title}
+											h5 #{inxt.t('average')} : #{item.rating.average}
 	p &nbsp;
 	p &nbsp;
+	script(src="/js/fixed.js")
