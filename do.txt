@@ -70,6 +70,8 @@ npm install --save connect-multiparty
 npm install grunt-mocha-test --save
 npm install mocha --save
 npm install should --save
+npm i nodemailer --save
+npm i nodemailer-smtp-transport --save
 
 grunt 运行app
 grunt test测试app
