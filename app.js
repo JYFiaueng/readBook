@@ -12,28 +12,26 @@ var logger = require('morgan');
 
 var port = process.env.PORT || 3000;
 var app = express();
-var dbUrl = 'mongodb://localhost/book';
 
-// 引入语言文件和i18next模块（2016年11月19日 17:15:59）
+// 国际化
 var language = require('./config/language');
 var i18next = require('i18next');
-// 加载资源文件
 i18next.init({
 	lng:'zh',
 	resources:language
 });
 app.locals.inxt = i18next;
-// #{inxt.t('key')}
+
+// 本地化moment模块
 app.locals.moment = require('moment');
-// #{moment('...').format('YYYY/MM/DD')}
 
 // 定义两个权限等级
 app.locals.admin = 50;
 app.locals.superAdmin = 51;
 
 // 引入邮件发送模块
+var dbUrl = 'mongodb://localhost/book';
 app.locals.sendMail = require('./config/email');
-
 
 // 连接数据库
 mongoose.connect(dbUrl);
@@ -49,7 +47,7 @@ var walk = function (path){
 		var newPath = path + '/' + file;
 		var stat = fs.statSync(newPath);
 		if(stat.isFile()){
-			if(/(.*)\.(js|coffee)/.test(file)){//如果是js文件就进行加载
+			if(/(.*)\.(js|coffee)/.test(file)){
 				require(newPath);
 			}
 		}else if(stat.isDirectory()){
@@ -58,15 +56,13 @@ var walk = function (path){
 	});
 };
 
-/*配置*/
-
+// 配置
 app.set('views', './app/views/pages');
 app.set('view engine', 'jade');
-// app.set(favicon());
-// app.use(bodyParser.urlencoded());
 app.use(bodyParser());
-app.use(serveStatic(path.join(__dirname, 'public')));//定义静态资源的路径
+app.use(serveStatic(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
+app.set(favicon('./public/favicon.ico'));
 app.use(cookieParser());
 app.use(connect_multiparty());
 app.use(session({
@@ -78,6 +74,8 @@ app.use(session({
 		mongooseConnection:'sessions'
 	})
 }));
+
+// 启动
 app.listen(port);
 console.log('project started on port:' + port);
 

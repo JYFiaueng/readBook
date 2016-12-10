@@ -9,6 +9,10 @@ block content
 					.col-sm-10
 						span.form-control #{user.name}
 				.form-group
+					label.col-sm-2.control-label #{inxt.t('email')}
+					.col-sm-10
+						span.form-control #{user.email}
+				.form-group
 					label.col-sm-2.control-label(for="inputPassword") #{inxt.t('change')}#{inxt.t('Password')}
 					.col-sm-10
 						a(href="/user/changePassPage?id=#{user._id}") #{inxt.t('change')}#{inxt.t('Password')}

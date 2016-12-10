@@ -14,8 +14,8 @@ var SEN = 4;//已经向指定邮箱发送邮件，请去激活
 var UEM = 5;//用户名不能是邮箱
 
 var SUBJECT = '贾雨峰图书站';
-var domain = 'http://10.0.53.21:3000';
-// var domain = 'http://localhost:3000';
+// var domain = 'http://10.0.53.21:3000';
+var domain = 'http://1o6003i090.iask.in:21758';
 
 var App;
 exports.loadApp = function (app){
@@ -45,7 +45,7 @@ exports.signup = function (req, res){
 				return;
 			}
 			var url = domain+'/user/active?id=' + user.id;
-			App.locals.sendMail(_user.email, SUBJECT, '请点击进行激活:<a href="'+url+'">'+url+'</a>');
+			App.locals.sendMail(_user.email, SUBJECT, '请点击链接进行激活:<a href="'+url+'">'+url+'</a>');
 			return res.json({
 				err:SEN
 			});
@@ -116,7 +116,7 @@ exports.signup = function (req, res){
 						// 		err:SEN
 						// 	});
 						// });
-						App.locals.sendMail(_user.email, SUBJECT, '请点击进行激活 : <a href="'+url+'">'+url+'</a>');
+						App.locals.sendMail(_user.email, SUBJECT, '请点击链接进行激活 : <a href="'+url+'">'+url+'</a>');
 						return res.json({
 							err:SEN
 						});
