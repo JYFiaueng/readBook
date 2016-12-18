@@ -17,6 +17,14 @@ html
 							.form-group
 								label(for="signinPassword") #{inxt.t('Password')}
 								input#signinPassword.form-control(name="user[password]", type="password", required)
+							.form-inline
+								.input-group
+									label(for="captcha") #{inxt.t('captcha')}
+									input#captcha.form-control(name="captcha", type="text", required)
+								.input-group
+									div(style="display:inline-block;height:50px;overflow:hidden;position:relative;bottom:-10px;")#captchaImg
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									label#changeCaptcha(style="cursor:pointer;font-size:20px;") #{inxt.t('change')}
 							.form-group.text-right
 								a(href="/user/findPassPage") #{inxt.t('findPass')}
 						.modal-footer

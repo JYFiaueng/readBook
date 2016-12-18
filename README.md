@@ -33,6 +33,7 @@
 	npm install should --save
 	npm i nodemailer --save
 	npm i nodemailer-smtp-transport --save
+	npm i svg-captcha --save
 
 
 
@@ -94,7 +95,12 @@
 	点击注册弹窗的关闭按钮进行清理逻辑
 	通过邮箱进行密码找回
 	将原来的修改头像和密码进行了分离，将修改密码改为链接将用户引入changePassPage路由进行密码的修改
+	登陆的时候要求用户输入验证码
 
 	（未做）
 	用户可设置密保问题进行密码的找回
-	注册/登陆的时候要求用户输入验证码
+
+http://1o6003i090.iask.in:21758
+http://1o6003i090.iask.in:23903
+
+https://www.npmjs.com/package/captchapng

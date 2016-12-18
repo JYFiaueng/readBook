@@ -80,7 +80,8 @@ module.exports = {
 			'suc':'Success',
 			'fail':'Fail',
 			'findPass':'Find Password',
-			'changePass':'Change Password'
+			'changePass':'Change Password',
+			'captcha':'Captcha'
 		}
 	},
 	zh:{
@@ -164,7 +165,8 @@ module.exports = {
 			'suc':'成功',
 			'fail':'失败',
 			'findPass':'找回密码',
-			'changePass':'修改密码'
+			'changePass':'修改密码',
+			'captcha':'验证码'
 		}
 	}
 };

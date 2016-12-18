@@ -4,6 +4,7 @@ var User = require('../models/user');
 var Book = require('../models/book');
 var fs = require('fs');
 var path = require('path');
+var svgCaptcha = require('svg-captcha');
 
 // 这三个只用于返回对象{err:...}的
 var ERR = 1;//服务器错误
@@ -12,6 +13,7 @@ var MSG = 2;//密码错误
 var EME = 3;//邮箱错误
 var SEN = 4;//已经向指定邮箱发送邮件，请去激活
 var UEM = 5;//用户名不能是邮箱
+var CAP = 6;
 
 var SUBJECT = '贾雨峰图书站';
 // var domain = 'http://10.0.53.21:3000';
@@ -130,6 +132,7 @@ exports.signup = function (req, res){
 // signin
 exports.signin = function (req, res){
 	var _user = req.body.user;
+	var captcha = req.body.captcha;
 	var name = _user.name;
 	var password = _user.password;
 	var regEmail = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
@@ -138,6 +141,12 @@ exports.signin = function (req, res){
 		UserQuery = {email:name};
 	}else{
 		UserQuery = {name:name};
+	}
+	// 验证校验码
+	if(req.session.captcha.toUpperCase() !== captcha.toUpperCase()){
+		return res.json({
+			err:CAP
+		});
 	}
 	User.findOne(UserQuery, function (err, user){
 		if(err){
@@ -523,4 +532,23 @@ exports.delList = function (req, res){
 			});
 		});
 	});
+};
+
+// captcha
+exports.captcha = function (req, res){
+	var c = svgCaptcha.create({
+		size:4,
+		// ignoreChars:'jyf',
+		noise:parseInt(Math.random()*5),
+		color:true,
+		background:'#'+('00000'+(Math.random()*0x1000000<<0).toString(16)).slice(-6)
+	});
+	req.session.captcha = c.text;
+	var newPath = path.join(__dirname, '../../', '/public/captcha.svg');//构建文件在服务器上的路径
+	fs.writeFile(newPath, c.data, function (err){//将文件写入到指定位置
+		if(err){
+			console.log(err);
+		}
+	});
+	res.end();
 };

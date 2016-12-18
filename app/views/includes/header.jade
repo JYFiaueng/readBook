@@ -47,7 +47,7 @@
 			p.navbar-text.navbar-right
 				a.navbar-link(href="#", data-toggle="modal", data-target="#signupModal") #{inxt.t('Signup')}
 				span &nbsp;|&nbsp;
-				a.navbar-link(href="#", data-toggle="modal", data-target="#signinModal") #{inxt.t('Signin')}
+				a.navbar-link#ALogin(href="#", data-toggle="modal", data-target="#signinModal") #{inxt.t('Signin')}
 				span &nbsp;|&nbsp;
 				a.navbar-link(href="/language?lng=zh") #{inxt.t('Chinese')}
 				span &nbsp;|&nbsp;
@@ -87,6 +87,14 @@
 					.form-group
 						label(for="signinPassword") #{inxt.t('Password')}
 						input#signinPassword.form-control(name="user[password]", type="password", required)
+					.form-inline
+						.input-group
+							label(for="captcha") #{inxt.t('captcha')}
+							input#captcha.form-control(name="captcha", type="text", required)
+						.input-group
+							div(style="display:inline-block;height:50px;overflow:hidden;position:relative;bottom:-10px;")#captchaImg
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							label#changeCaptcha(style="cursor:pointer;font-size:20px;") #{inxt.t('change')}
 					.form-group.text-right
 						a(href="/user/findPassPage") #{inxt.t('findPass')}
 				.modal-footer

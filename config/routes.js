@@ -41,6 +41,9 @@ module.exports = function (app){
 		}
 	});
 
+	// captcha
+	app.get('/captcha', User.captcha);
+
 	// signin page
 	app.get('/signin', User.showSignin);
 	// signup page
