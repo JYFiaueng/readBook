@@ -1,4 +1,4 @@
-/*定义电影分类模型*/
+/*定义图书分类模型*/
 
 var mongoose = require('mongoose');
 var CategorySchema = require('../schemas/category');
