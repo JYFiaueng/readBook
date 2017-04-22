@@ -47,6 +47,7 @@ block content
 					.panel-heading
 						h3 #{inxt.t('comments')}
 					.panel-body
+						//- data-cid用这个属性来记录此系列评论的最初一条评论是谁发起的
 						ul.media-list
 							each item in comments
 								li.media

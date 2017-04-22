@@ -6,6 +6,7 @@ $(document).ready(function ($){
 		var toId = target.data('tid');
 		var commentId = target.data('cid');
 		// 以最后一次点击的头像为准
+		// 更新被回复人
 		if($('#toId').length > 0){
 			$('#toId').val(toId);
 		}else{
@@ -16,6 +17,7 @@ $(document).ready(function ($){
 				value:toId
 			}).appendTo('#commentForm');
 		}
+		// 更新评论的发起人，也就是最外层一条评论人
 		if($('#commentId').length > 0){
 			$('#commentId').val(commentId);
 		}else{

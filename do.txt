@@ -1,4 +1,4 @@
---save-dev 将插件版本添加到package.json中
+﻿--save-dev 将插件版本添加到package.json中
 bower init 会生成 bower.json 文件
 .bowerrc 文件用于更改bower的默认配置
 慢任务就是sass、less等的编译就是慢任务
@@ -163,3 +163,6 @@ grunt test测试app
 
 	用户可设置密保问题进行密码的找回
 	注册/登陆的时候要求用户输入验证码
+
+帐号 lorem
+密码 lorem1

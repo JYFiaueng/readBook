@@ -40,6 +40,7 @@ exports.showSignin = function (req, res){
 exports.signup = function (req, res){
 	var _user = req.body.user;
 	var again = req.query.again;
+	// 用户未收到邮件进行再次发送
 	if(again == 'again'){
 		User.findOne({email:_user.email}, function (err, user){
 			if(err){
@@ -80,7 +81,7 @@ exports.signup = function (req, res){
 			console.log(err);
 			return;
 		}
-		if(user){
+		if(user){ //用户名存在
 			return res.json({
 				err:ERR
 			});
@@ -545,10 +546,11 @@ exports.captcha = function (req, res){
 	});
 	req.session.captcha = c.text;
 	var newPath = path.join(__dirname, '../../', '/public/captcha.svg');//构建文件在服务器上的路径
-	fs.writeFile(newPath, c.data, function (err){//将文件写入到指定位置
-		if(err){
-			console.log(err);
-		}
-	});
-	res.end();
+	// 修改原有的将svg数据写入文件的方式
+	// fs.writeFile(newPath, c.data, function (err){//将文件写入到指定位置
+	// 	if(err){
+	// 		console.log(err);
+	// 	}
+	// });
+	res.end(c.data);
 };

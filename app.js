@@ -1,20 +1,21 @@
 var express = require('express');
 var path = require('path');
-var session = require('express-session');
-var mongoose = require('mongoose');
-var mongoStore = require('connect-mongo')(session);
-var cookieParser = require('cookie-parser');
-var serveStatic = require('serve-static');
-var bodyParser = require('body-parser');
-var favicon = require('serve-favicon');
-var connect_multiparty = require('connect-multiparty');
-var logger = require('morgan');
+
+var session = require('express-session'); //
+var mongoose = require('mongoose'); // 
+var mongoStore = require('connect-mongo')(session); // 
+var cookieParser = require('cookie-parser'); // cookie自动解析模块
+var serveStatic = require('serve-static'); // 静态文件目录模块
+var bodyParser = require('body-parser'); // 请求体自动解析模块
+var favicon = require('serve-favicon'); // favicon文件自动添加模块
+var connect_multiparty = require('connect-multiparty'); // 文件上传解析模块
+var logger = require('morgan'); // 日志模块
 
 var port = process.env.PORT || 3000;
 var app = express();
 
 // 国际化
-var language = require('./config/language');
+var language = require('./config/language'); //导入语言文件
 var i18next = require('i18next');
 i18next.init({
 	lng:'zh',
@@ -22,7 +23,7 @@ i18next.init({
 });
 app.locals.inxt = i18next;
 
-// 本地化moment模块
+// 本地化moment模块，时间戳的格式化
 app.locals.moment = require('moment');
 
 // 定义两个权限等级
@@ -30,8 +31,10 @@ app.locals.admin = 50;
 app.locals.superAdmin = 51;
 
 // 引入邮件发送模块
-var dbUrl = 'mongodb://localhost/book';
 app.locals.sendMail = require('./config/email');
+
+// 数据库连接地址
+var dbUrl = 'mongodb://localhost/book';
 
 // 连接数据库
 mongoose.connect(dbUrl);
@@ -57,12 +60,13 @@ var walk = function (path){
 };
 
 // 配置
-app.set('views', './app/views/pages');
-app.set('view engine', 'jade');
-app.use(bodyParser());
-app.use(serveStatic(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'bower_components')));
+app.set('views', './app/views/pages'); //页面文件的位置
+app.set('view engine', 'jade'); //页面使用的模版引擎
 app.set(favicon('./public/favicon.ico'));
+
+app.use(bodyParser()); //请求体解析
+app.use(serveStatic(path.join(__dirname, 'public'))); //静态文件位置
+app.use(express.static(path.join(__dirname, 'bower_components'))); //
 app.use(cookieParser());
 app.use(connect_multiparty());
 app.use(session({

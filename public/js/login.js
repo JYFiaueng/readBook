@@ -36,8 +36,9 @@ $(document).ready(function ($){
 
 	function ChangeCaptcha(){
 		$.get('/captcha', function (data){
-			var html = '<iframe src="captcha.svg" width="150" height="50" style="overflow:hidden;border:none;"></iframe>';
-			$('#captchaImg').html(html);
+			// var html = '<iframe src="captcha.svg" width="150" height="50" style="overflow:hidden;border:none;"></iframe>';
+			$('#captchaImg').html(data);
+			console.log(data);
 		});
 	}
 
