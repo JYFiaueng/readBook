@@ -6,27 +6,58 @@ block content
 			form.form-horizontal(method="post", action="/user/changeImage/change" enctype="multipart/form-data")
 				.form-group
 					label.col-sm-2.control-label #{inxt.t('Account')}
-					.col-sm-10
+					.col-sm-8
 						span.form-control #{user.name}
 				.form-group
 					label.col-sm-2.control-label #{inxt.t('email')}
-					.col-sm-10
+					.col-sm-8
 						span.form-control #{user.email}
 				.form-group
 					label.col-sm-2.control-label(for="inputPassword") #{inxt.t('change')}#{inxt.t('Password')}
-					.col-sm-10
+					.col-sm-8
 						a(href="/user/changePassPage?id=#{user._id}") #{inxt.t('change')}#{inxt.t('Password')}
 				.form-group
+					label.col-sm-2.control-label(for="") #{inxt.t('sex')}
+					.col-sm-8
+						if parseInt(user.sex) === 2
+							span #{inxt.t('secret')}
+							input(type="radio", name="sex", value="0")
+							span  | #{inxt.t('man')}
+							input(type="radio", name="sex", value="1")
+							span  | #{inxt.t('woman')}
+							input(type="radio", name="sex", value="2", checked="")
+						else if parseInt(user.sex) === 1
+							span #{inxt.t('secret')}
+							input(type="radio", name="sex", value="0")
+							span  | #{inxt.t('man')}
+							input(type="radio", name="sex", value="1", checked="")
+							span  | #{inxt.t('woman')}
+							input(type="radio", name="sex", value="2")
+						else
+							span #{inxt.t('secret')}
+							input(type="radio", name="sex", value="0", checked="")
+							span  | #{inxt.t('man')}
+							input(type="radio", name="sex", value="1")
+							span  | #{inxt.t('woman')}
+							input(type="radio", name="sex", value="2")
+				.form-group
+					label.col-sm-2.control-label(for="desc") #{inxt.t('desc')}
+					.col-sm-8
+						if user.desc
+							input#desc.form-control(type="text", name="desc", value="#{user.desc}", placeholder="写点儿东西吧")
+						else
+							input#desc.form-control(type="text", name="desc", value="", placeholder="写点儿东西吧")
+				.form-group
 					label.col-sm-2.control-label(for="inputImage") #{inxt.t('imageUrl')}
-					.col-sm-10
+					.col-sm-8
 						if user.image.indexOf('http') !== -1
 							input#inputImage.form-control(type="text", name="userImage", value=user.image, placeholder="URL")
 						else
 							input#inputImage.form-control(type="text", name="userImage", value='', placeholder="URL")
 				.form-group
 					label.col-sm-2.control-label(for="uploadImage") #{inxt.t('upload')}
-					.col-sm-10
+					.col-sm-8
 						input#uploadImage(type="file", name="uploadImage")
 				.form-group
-					.col-sm-offset-2.col-sm-10
+					.col-sm-offset-2.col-sm-8
 						button.btn.btn-default(type="submit") #{inxt.t('submit')}

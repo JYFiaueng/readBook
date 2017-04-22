@@ -3,7 +3,7 @@ extends ../layout
 block content
 	.container
 		.row
-			.col-md-8
+			.col-md-7
 				.dl-horizontal
 					dt #{inxt.t('title')}:
 					dd= book.title
@@ -27,16 +27,38 @@ block content
 					dt #{inxt.t('numRaters')}:
 					dd= book.rating.numRaters
 					dt #{inxt.t('author_intro')}:
-					dd= book.author_intro
+					dd.author_intro
+						div= book.author_intro
 					dt #{inxt.t('tags')}:
 					dd!= book.tags.split('  ').join('<br>')
 					dt #{inxt.t('summary')}:
-					dd= book.summary
+					dd.summary
+						div= book.summary
 					dt #{inxt.t('catalog')}:
-					dd!= book.catalog.split('\n').join('<br>')
+					dd.catalog
+						div!= book.catalog.split('\n').join('<br>')
 			.col-md-4
-				//- img.media-object(src="#{book.poster}")
 				button.btn.btn-block.btn-success(id="addList") #{inxt.t('addMyBookList')}
+				hr
+				.share
+					span
+						- var xinlang = 'http://service.weibo.com/share/share.php?pic='+book.images.small+'&title='+title
+						a.xinlang(href="#{xinlang}", target="_blank", alt="分享至新浪微博")
+					span
+						- var qq = 'http://connect.qq.com/widget/shareqq/index.html?title='+title
+						a.qq(href="#{qq}", target="_blank", alt="分享至QQ好友")
+					span
+						- var qqkj = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?pics='+book.images.small+'&title='+title
+						a.qqkj(href="#{qqkj}", target="_blank", alt="分享至QQ空间")
+					span
+						- var txwb = 'http://share.v.t.qq.com/index.php?pic='+book.images.small+'&title='+title
+						a.txwb(href="#{txwb}", target="_blank", alt="分享至腾讯微博")
+					span
+						-var renren = 'http://widget.renren.com/dialog/share?pic='+book.images.small+'&title='+title
+						a.renren(href="", target="_blank", alt="分享至人人网")
+					span
+						-var renren = 'http://shuo.douban.com/!service/share?image='+book.images.small+'&name='+title
+						a.douban(href="", target="_blank", alt="分享至豆瓣")
 				hr
 				img.media-object(src="#{book.images.large}", style="width:100%")
 				input(type="hidden", value=book._id, id="bookId")

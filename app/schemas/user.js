@@ -52,6 +52,14 @@ var UserSchema = new Schema({
 			type:Date,
 			default:Date.now()
 		}
+	},
+	sex:{
+		type:Number,
+		default:0
+	},
+	desc:{
+		type:String,
+		default:''
 	}
 });
 

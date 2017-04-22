@@ -1,5 +1,10 @@
 *{ font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
 
+h3{
+	padding: 0;
+	margin: 0;
+}
+
 #extraDiv1 {
 	width: 50px;
 	height: 50px;
@@ -38,4 +43,68 @@
 	100% {
 		bottom: 60px;
 	}
+}
+
+.footer{
+	height: 100px;
+	text-align: center;
+	color: #aaa;
+}
+
+.share{
+	display: flex;
+	height: 40px;
+}
+.share span{
+	flex-grow: 1;
+	display: flex;
+	transition: all 0.14s;
+}
+.share span a{
+	flex-grow: 1;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	cursor: pointer;
+}
+.share span:hover{
+	transform: scale(1.2);
+}
+.xinlang{
+	background-image: url(/新浪微博.png);
+}
+.qq{
+	background-image: url(/qq.png);
+}
+.qqkj{
+	background-image: url(/qq空间.png);
+}
+.txwb{
+	background-image: url(/腾讯微博.png);
+}
+.renren{
+	background-image: url(/人人网.png);
+}
+.douban{
+	background-image: url(/豆瓣.png);
+}
+
+.author_intro, .summary{
+	height: 200px;
+	overflow: hidden;
+}
+.catalog{
+	height: 400px;
+	overflow: hidden;
+}
+.author_intro div, .summary div, .catalog div{
+	overflow-y: scroll;
+	height: 100%;
+	margin-right: -20px;
+	padding-right: 20px;
+	word-wrap: break-word;
+}
+
+dd{
+	margin: 5px 0;
 }

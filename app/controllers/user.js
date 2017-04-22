@@ -325,15 +325,24 @@ exports.saveImage = function (req, res, next){
 exports.saveImg = function (req, res){
 	// 更新头像
 	if(!req.image){
-		req.image = req.body.userImage;
+		req.image = req.session.user.image;
+		if(req.body.userImage){
+			req.image = req.body.userImage;
+		}
 	}
-	User.update({_id:req.session.user._id}, {$set:{image:req.image}}, function (err){
+	var desc = req.session.user.desc;
+	if(req.body.desc){
+		desc = req.body.desc;
+	}
+	User.update({_id:req.session.user._id}, {$set:{image:req.image, sex:req.body.sex, desc:desc}}, function (err){
 		if(err){
 			console.log(err);
 			return;
 		}
 		req.session.user.image = req.image;
-		res.redirect('/');
+		req.session.user.desc = desc;
+		req.session.user.sex = req.body.sex;
+		res.redirect('/user/changeImage');
 	});
 	// if(!req.body.username){
 	// 	req.body.username = req.session.user.name;

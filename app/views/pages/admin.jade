@@ -6,21 +6,21 @@ block content
 			form.form-horizontal(method="post", action="/admin/book/add" enctype="multipart/form-data")
 				.form-group
 					label.col-sm-2.control-label(for="inputCategory") #{inxt.t('douban')}
-					.col-sm-10
+					.col-sm-8
 						input#douban.form-control(type="text")
 				if book._id
 					input(type='hidden', name="book[_id]", value=book._id)
 				.form-group
 					label.col-sm-2.control-label(for="inputTitle") #{inxt.t('title')}
-					.col-sm-10
+					.col-sm-8
 						input#inputTitle.form-control(type="text", name="book[title]", value=book.title)
 				.form-group
 					label.col-sm-2.control-label(for="inputSubtitle") #{inxt.t('subtitle')}
-					.col-sm-10
+					.col-sm-8
 						input#inputSubtitle.form-control(type="text", name="book[subtitle]", value=book.subtitle)
 				.form-group
 					label.col-sm-2.control-label(for="inputCategory") #{inxt.t('categoryName')}
-					.col-sm-10
+					.col-sm-8
 						input#inputCategory.form-control(type="text", name="book[categoryName]", value=book.categoryName)
 						each cat in categories
 							label.radio-inline
@@ -32,76 +32,76 @@ block content
 									span= cat.name
 				.form-group
 					label.col-sm-2.control-label(for="inputAuthor") #{inxt.t('author')}
-					.col-sm-10
+					.col-sm-8
 						input#inputAuthor.form-control(type="text", name="book[author]", value=book.doctor)
 				.form-group
 					label.col-sm-2.control-label(for="inputPoster") #{inxt.t('poster')}
-					.col-sm-10
+					.col-sm-8
 						input#inputPoster.form-control(type="text", name="book[poster]", value=book.poster)
 				.form-group
 					label.col-sm-2.control-label(for="uploadPoster") #{inxt.t('uploadPoster')}
-					.col-sm-10
+					.col-sm-8
 						input#uploadPoster(type="file", name="uploadPoster")
 				.form-group
 					label.col-sm-2.control-label(for="inputImagesLarge") #{inxt.t('large')}
-					.col-sm-10
+					.col-sm-8
 						input#inputImagesLarge.form-control(type="text", name="book[images][large]", value=book.images.large)
 				.form-group
 					label.col-sm-2.control-label(for="inputImagesMedium") #{inxt.t('medium')}
-					.col-sm-10
+					.col-sm-8
 						input#inputImagesMedium.form-control(type="text", name="book[images][medium]", value=book.images.medium)
 				.form-group
 					label.col-sm-2.control-label(for="inputImagesSmall") #{inxt.t('small')}
-					.col-sm-10
+					.col-sm-8
 						input#inputImagesSmall.form-control(type="text", name="book[images][small]", value=book.images.small)
 				.form-group
 					label.col-sm-2.control-label(for="inputYear") #{inxt.t('year')}
-					.col-sm-10
+					.col-sm-8
 						input#inputYear.form-control(type="text", name="book[year]", value=book.year)
 				.form-group
 					label.col-sm-2.control-label(for="inputAlt") #{inxt.t('alt')}
-					.col-sm-10
+					.col-sm-8
 						input#inputAlt.form-control(type="text", name="book[alt]", value=book.alt)
 				.form-group
 					label.col-sm-2.control-label(for="inputPages") #{inxt.t('pages')}
-					.col-sm-10
+					.col-sm-8
 						input#inputPages.form-control(type="text", name="book[pages]", value=book.pages)
 				.form-group
 					label.col-sm-2.control-label(for="inputPrice") #{inxt.t('price')}
-					.col-sm-10
+					.col-sm-8
 						input#inputPrice.form-control(type="text", name="book[price]", value=book.price)
 				.form-group
 					label.col-sm-2.control-label(for="inputPublisher") #{inxt.t('publisher')}
-					.col-sm-10
+					.col-sm-8
 						input#inputPublisher.form-control(type="text", name="book[publisher]", value=book.publisher)
 				.form-group
 					label.col-sm-2.control-label(for="inputRatingAverage") #{inxt.t('average')}
-					.col-sm-10
+					.col-sm-8
 						input#inputRatingAverage.form-control(type="text", name="book[rating][average]", value=book.rating.average)
 				.form-group
 					label.col-sm-2.control-label(for="inputRatingNumRaters") #{inxt.t('numRaters')}
-					.col-sm-10
+					.col-sm-8
 						input#inputRatingNumRaters.form-control(type="text", name="book[rating][numRaters]", value=book.rating.numRaters)
-				input#inputMax(type="hidden", name="book[rating][max]" value="10")
+				input#inputMax(type="hidden", name="book[rating][max]" value="8")
 				input#inputMin(type="hidden", name="book[rating][min]" value="0")
 				.form-group
 					label.col-sm-2.control-label(for="inputTags") #{inxt.t('tags')}
-					.col-sm-10
+					.col-sm-8
 						textarea#inputTags.form-control(type="text", name="book[tags]", value=book.tags) #{book.tags}
 				.form-group
 					label.col-sm-2.control-label(for="inputAuthor_intro") #{inxt.t('author_intro')}
-					.col-sm-10
+					.col-sm-8
 						textarea#inputAuthor_intro.form-control(type="text", name="book[author_intro]", value=book.author_intro) #{book.author_intro}
 				.form-group
 					label.col-sm-2.control-label(for="inputSummary") #{inxt.t('summary')}
-					.col-sm-10
+					.col-sm-8
 						textarea#inputSummary.form-control(type="text", name="book[summary]", value=book.summary) #{book.summary}
 				.form-group
 					label.col-sm-2.control-label(for="inputCatalog") #{inxt.t('catalog')}
-					.col-sm-10
+					.col-sm-8
 						textarea#inputCatalog.form-control(type="text", name="book[catalog]", value=book.catalog) #{book.catalog}
 				.form-group
-					.col-sm-offset-2.col-sm-10
+					.col-sm-offset-2.col-sm-8
 						button.btn.btn-default(type="submit") #{inxt.t('submit')}
 		p &nbsp;
 		p &nbsp;

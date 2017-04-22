@@ -1,6 +1,7 @@
 module.exports = {
 	en:{
 		translation:{
+			'me':'Lorem',
 			'Signin':'Signin',
 			'Signup':'Signup',
 			'Chinese':'Chinese',
@@ -81,11 +82,17 @@ module.exports = {
 			'fail':'Fail',
 			'findPass':'Find Password',
 			'changePass':'Change Password',
-			'captcha':'Captcha'
+			'captcha':'Captcha',
+			'sex':'sex',
+			'secret':'secret',
+			'man':'man',
+			'woman':'woman',
+			'desc':'desc'
 		}
 	},
 	zh:{
 		translation:{
+			'me':'贾雨峰',
 			'Signin':'登录',
 			'Signup':'注册',
 			'Chinese':'中文',
@@ -103,7 +110,7 @@ module.exports = {
 			'Home':'首页',
 			'BooksM':'图书管理',
 			'UsersM':'用户管理',
-			'BooksC':'图书分类',
+			'BooksC':'图书分类管理',
 			'AddBook':'添加图书',
 			'AddCategory':'添加分类',
 			'Go':'去',
@@ -166,7 +173,12 @@ module.exports = {
 			'fail':'失败',
 			'findPass':'找回密码',
 			'changePass':'修改密码',
-			'captcha':'验证码'
+			'captcha':'验证码',
+			'sex':'性别',
+			'secret':'保密',
+			'man':'男',
+			'woman':'女',
+			'desc':'签名'
 		}
 	}
 };
