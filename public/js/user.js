@@ -13,6 +13,8 @@ $(document).ready(function ($){
 				alert('修改成功!');
 				tr.find('.role').html(role);
 				tr.find('input').val('');
+			}else{
+				alert('修改失败!');
 			}
 		});
 	});

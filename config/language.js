@@ -1,7 +1,7 @@
 module.exports = {
 	en:{
 		translation:{
-			'me':'Lorem',
+			'me':'taiyuanxueyuan',
 			'Signin':'Signin',
 			'Signup':'Signup',
 			'Chinese':'Chinese',
@@ -92,7 +92,7 @@ module.exports = {
 	},
 	zh:{
 		translation:{
-			'me':'贾雨峰',
+			'me':'太原学院',
 			'Signin':'登录',
 			'Signup':'注册',
 			'Chinese':'中文',

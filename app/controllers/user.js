@@ -16,8 +16,8 @@ var UEM = 5;//用户名不能是邮箱
 var CAP = 6;
 
 var SUBJECT = '贾雨峰图书站';
-// var domain = 'http://10.0.53.21:3000';
-var domain = 'http://1o6003i090.iask.in:21758';
+var domain = 'http://192.168.0.102:3000';
+// var domain = 'http://1o6003i090.iask.in:21758';
 
 var App;
 exports.loadApp = function (app){
@@ -410,14 +410,18 @@ exports.changeImage = function (req, res){
 // change role
 exports.changeRole = function (req, res){
 	var _id = req.query.id;
-	var role = req.query.role;
-	User.update({_id:_id}, {$set:{role:role}}, function (err, user){
-		if(err){
-			console.log(err);
-			return;
-		}
-		res.json({success:1});
-	});
+	var role = parseInt(req.query.role);
+	if(typeof role === "number" && role >= 0 && role <= 51 && req.session.user._id != _id){
+		User.update({_id:_id}, {$set:{role:role}}, function (err, user){
+			if(err){
+				console.log(err);
+				return;
+			}
+			res.json({success:1});
+		});
+	}else{
+		res.json({success:2});
+	}
 };
 
 // midware for user
@@ -431,11 +435,25 @@ exports.signinRequired = function (req, res, next){
 
 // midware for admin
 exports.adminRequired = function (req, res, next){
-	var user = req.session.user;
-	if(user.role < 50){
-		return res.redirect('/signin');
+	if(!req.session.user){
+		next();
+		return;
 	}
-	next();
+	var _id = req.session.user._id;
+	User.findOne({_id:_id}, function (err, user){
+		if(err){
+			console.log(err);
+			return;
+		}
+		if(parseInt(user.role) !== parseInt(req.session.user.role)){
+			req.session.user.role = user.role;
+		}
+		if(user.role < 51){
+			res.redirect('/');
+			return;
+		}
+		next();
+	});
 };
 
 // show user bookList
